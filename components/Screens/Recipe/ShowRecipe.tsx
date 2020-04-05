@@ -5,39 +5,20 @@ import {
   TouchableWithoutFeedback,
   Animated,
   Dimensions,
-  PanResponder,
 } from "react-native";
 import { Text, Block, AnimatedBlock } from "../../Atoms";
 import BlockImage from "../../Atoms/BlockImage";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../../Atoms/Constants/theme";
+import TabRecipe from "../../Navigator/RecipeDetailsNavigator/RecipeDetailsNavigator"
 
 const { height } = Dimensions.get("screen");
 export default function ShowRecipe() {
-  const heightAnim = useRef(new Animated.Value(height - 200)).current;
-  const pan = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponderCapture: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderGrant: (e, gestureState) => {
-        if (heightAnim._value > height - 200) {
-          heightAnim.setValue(height-200)
-        } else {
-          heightAnim.setOffset(heightAnim._value);
-        }
-      },
+  const heightAnim = useRef(new Animated.Value(300)).current;
 
-      onPanResponderMove: Animated.event([null, { dy: heightAnim }]),
-
-      onPanResponderRelease: (e, { vx, vy }) => {
-        console.log(heightAnim);
-        heightAnim.flattenOffset();
-      },
-    })
-  ).current;
   const open = () => {
     Animated.spring(heightAnim, {
-      toValue: height - 100,
+      toValue: height - 200,
     }).start();
   };
   return (
@@ -91,7 +72,6 @@ export default function ShowRecipe() {
         </Block>
       </BlockImage>
       <AnimatedBlock
-        {...pan.panHandlers}
         style={{
           position: "absolute",
           bottom: 0,
@@ -109,7 +89,7 @@ export default function ShowRecipe() {
               <Block
                 style={{
                   width: 100,
-                  height: 10,
+                  height: 6,
                   backgroundColor: "gray",
                   marginTop: 10,
                   borderRadius: 50,
@@ -118,8 +98,8 @@ export default function ShowRecipe() {
             </Block>
           </TouchableWithoutFeedback>
         </Block>
-        <ScrollView style={{ padding: 35 }}>
-          <Text>Recipe infinty</Text>
+        <ScrollView style={{ padding: 15 }}>
+          <TabRecipe />
         </ScrollView>
       </AnimatedBlock>
     </SafeAreaView>
