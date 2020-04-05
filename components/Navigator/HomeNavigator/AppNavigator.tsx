@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Settings } from "../StettingNavigator";
 import Home from "../../Screens/HomePage/HomePage";
 //Icons
 import { Feather } from "@expo/vector-icons";
@@ -8,13 +7,13 @@ import { Feather } from "@expo/vector-icons";
 import HomeCart from "../../Screens/CartPage/HomeCart";
 import HomeCategory from "../../Screens/CategoryPage/HomeCategory";
 import { colors } from "../../Atoms/Constants/theme";
-import { useStoreState } from "../../../stores/hooks";
+import Feed from "../../Screens/FeedPage/Feed";
+import HomeAccount from "../../Screens/AccountPage/HomeAccount";
 
 const BottomTab = createBottomTabNavigator();
 
 export default function AppNavigator() {
-  const IsVisible = useStoreState((state) => state.AppAction.OnAuthPage);
-  return (
+return (
     <BottomTab.Navigator
       tabBarOptions={{
         activeTintColor: colors.primary,
@@ -37,7 +36,7 @@ export default function AppNavigator() {
           ),
         }}
         name="home"
-        component={Home}
+        component={Feed}
       />
       <BottomTab.Screen
         options={{
@@ -65,10 +64,9 @@ export default function AppNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Feather name="list" size={size} color={color} />
           ),
-          tabBarVisible: IsVisible,
         }}
         name="actu"
-        component={Settings}
+        component={Feed}
       />
       <BottomTab.Screen
         options={{
@@ -76,10 +74,10 @@ export default function AppNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
-          tabBarVisible: IsVisible,
+       
         }}
         name="Mon Compte"
-        component={Settings}
+        component={HomeAccount}
       />
     </BottomTab.Navigator>
   );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Platform, StatusBar, View, Text } from "react-native";
+import { Platform, StatusBar } from "react-native";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
@@ -7,10 +7,9 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStore, StoreProvider } from "easy-peasy";
 import store from "./stores/CombineStore";
-import AppNavigator from "./components/Navigator/StackNavigator/StackNavigator";
+import AppNavigator from "./components/Navigator/HomeNavigator/AppNavigator";
 
 const Store = createStore(store);
-
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -22,7 +21,7 @@ const client = new ApolloClient({
     if (networkError) {
       console.log("Network Error");
     }
-  }
+  },
 });
 
 interface Props {
@@ -31,7 +30,7 @@ interface Props {
 
 export default class App extends React.Component<Props> {
   public state = {
-    isLoadingComplete: false
+    isLoadingComplete: false,
   };
 
   public loadResourcesAsync = async () => {
@@ -46,8 +45,8 @@ export default class App extends React.Component<Props> {
         "Rubik-LightItalic": require("./assets/fonts/Rubik-LightItalic.ttf"),
         "Rubik-Medium": require("./assets/fonts/Rubik-Medium.ttf"),
         "Rubik-MediumItalic": require("./assets/fonts/Rubik-MediumItalic.ttf"),
-        "Rubik-Regular": require("./assets/fonts/Rubik-Regular.ttf")
-      })
+        "Rubik-Regular": require("./assets/fonts/Rubik-Regular.ttf"),
+      }),
     ]);
   };
 
@@ -73,14 +72,14 @@ export default class App extends React.Component<Props> {
       );
     }
     return (
-      <StoreProvider store={Store}>
-        <ApolloProvider client={client}>
-          <NavigationContainer>
+      <NavigationContainer>
+        <StoreProvider store={Store}>
+          <ApolloProvider client={client}>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <AppNavigator/>
-          </NavigationContainer>
-        </ApolloProvider>
-      </StoreProvider>
+            <AppNavigator />
+          </ApolloProvider>
+        </StoreProvider>
+      </NavigationContainer>
     );
   }
 }

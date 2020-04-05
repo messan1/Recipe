@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import AuthNavigator from "../RecipeDetailsNavigator/RecipeDetailsNavigator";
-import SettingsHome from "../../Screens/Settings/Home";
+import SettingsHome from "../../Screens/Account/Home";
 
 const Stack = createStackNavigator();
 
