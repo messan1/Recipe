@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Platform, StatusBar } from "react-native";
+import { Platform, StatusBar, View } from "react-native";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
@@ -8,7 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStore, StoreProvider } from "easy-peasy";
 import store from "./stores/CombineStore";
 import AppNavigator from "./components/Navigator/HomeNavigator/AppNavigator";
-
+import ErrorBoundary from "react-native-error-boundary";
+import { Text, Block, Button } from "./components/Atoms";
 const Store = createStore(store);
 
 const client = new ApolloClient({
@@ -71,15 +72,28 @@ export default class App extends React.Component<Props> {
         />
       );
     }
+    const CustomFallback = (props: { error: Error; resetError: Function }) => (
+      <Block
+        style={{ flex: 1, justifyContent: "center", alignItems: "center",marginLeft:15 }}
+      >
+        <Text h2 bold center>Something happened!</Text>
+        <Text h3 center>{props.error.toString()}</Text>
+        <Button full onPress={() => props.resetError}>
+          <Text>Try Again</Text>
+        </Button>
+      </Block>
+    );
     return (
-      <NavigationContainer>
-        <StoreProvider store={Store}>
-          <ApolloProvider client={client}>
-            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <AppNavigator />
-          </ApolloProvider>
-        </StoreProvider>
-      </NavigationContainer>
+      <ErrorBoundary FallbackComponent={CustomFallback}>
+        <NavigationContainer>
+          <StoreProvider store={Store}>
+            <ApolloProvider client={client}>
+              {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+              <AppNavigator />
+            </ApolloProvider>
+          </StoreProvider>
+        </NavigationContainer>
+      </ErrorBoundary>
     );
   }
 }

@@ -56,7 +56,7 @@ export default function Input(props) {
     }
     return (
       <Block row center middle style={inputIconStyle}>
-        <Text>icon</Text>
+        <Text>{icon}</Text>
         <TextInput
           style={inputStyle}
           autoCapitalize="none"

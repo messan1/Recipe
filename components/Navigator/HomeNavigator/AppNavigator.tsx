@@ -5,7 +5,7 @@ import Home from "../../Screens/HomePage/HomePage";
 import { Feather } from "@expo/vector-icons";
 //Screens
 import HomeCart from "../../Screens/CartPage/HomeCart";
-import HomeCategory from "../../Screens/CategoryPage/HomeCategory";
+import Search from "../../Screens/Search/Search";
 import { colors } from "../../Atoms/Constants/theme";
 import Feed from "../../Screens/FeedPage/Feed";
 import HomeAccount from "../../Screens/AccountPage/HomeAccount";
@@ -36,7 +36,7 @@ return (
           ),
         }}
         name="home"
-        component={Feed}
+        component={Home}
       />
       <BottomTab.Screen
         options={{
@@ -46,7 +46,7 @@ return (
           ),
         }}
         name="search"
-        component={HomeCategory}
+        component={Search}
       />
       <BottomTab.Screen
         options={{
