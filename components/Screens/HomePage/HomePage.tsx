@@ -9,7 +9,7 @@ import { Block, Text } from "../../Atoms";
 import BlockImage from "../../Atoms/BlockImage";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../../Atoms/Constants/theme";
-
+import contrains from "expo-constants";
 export default function HomePage(props) {
   const data = [
     {
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     padding: 20,
+    marginTop:contrains.statusBarHeight
   },
   blockimage: {
     marginTop: 15,

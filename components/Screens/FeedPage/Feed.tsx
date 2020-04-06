@@ -4,6 +4,7 @@ import { Block, Text } from "../../Atoms";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../../Atoms/Constants/theme";
 import BlockImage from "../../Atoms/BlockImage";
+import contrains from "expo-constants";
 
 export default function Feed() {
   const data = [
@@ -24,7 +25,7 @@ export default function Feed() {
   ];
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{marginTop:contrains.statusBarHeight}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Block style={{ padding: 25 }}>
           <Block style={{ marginTop: 15, marginBottom: 25 }}>
