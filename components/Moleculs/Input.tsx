@@ -69,7 +69,7 @@ export default function Input(props) {
   return (
     <View>
       <View style={styles.labelContainer}>
-        <Text medium style={styles.label}>
+        <Text h5 style={styles.label}>
           {label}
         </Text>
         <Text>{rightlabel}</Text>
@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.input
   },
   label: {
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    marginTop:15
   },
   labelContainer: {
     flexDirection: "row",

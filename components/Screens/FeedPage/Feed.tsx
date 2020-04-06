@@ -38,7 +38,7 @@ export default function Feed() {
             />
           </Block>
           {data.map((user) => (
-            <Block style={{marginBottom:25}}>
+            <Block key={user.id} style={{marginBottom:25}}>
               <Block
                 row
                 center

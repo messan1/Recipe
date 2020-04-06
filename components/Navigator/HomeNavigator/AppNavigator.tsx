@@ -4,7 +4,7 @@ import Home from "../../Screens/HomePage/HomePage";
 //Icons
 import { Feather } from "@expo/vector-icons";
 //Screens
-import HomeCart from "../../Screens/CartPage/HomeCart";
+import AddRecipe from "../../Screens/AddRecipe/AddRecipe";
 import Search from "../../Screens/Search/Search";
 import { colors } from "../../Atoms/Constants/theme";
 import Feed from "../../Screens/FeedPage/Feed";
@@ -56,7 +56,7 @@ return (
           ),
         }}
         name="add"
-        component={HomeCart}
+        component={AddRecipe}
       />
       <BottomTab.Screen
         options={{
