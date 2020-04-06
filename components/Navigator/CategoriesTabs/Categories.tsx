@@ -14,6 +14,8 @@ export default function Navigation() {
         style: {
           elevation: 0,
         },
+        allowFontScaling:true,
+        scrollEnabled:true,
         indicatorStyle: {
           height: 2,
           backgroundColor: colors.black,
@@ -27,6 +29,10 @@ export default function Navigation() {
     >
       <Tab.Screen name="Categories" component={SearchTab} />
       <Tab.Screen name="Allergies" component={SearchTab} />
+      <Tab.Screen name="Allerg8ies" component={SearchTab} />
+      <Tab.Screen name="Alklergies" component={SearchTab} />
+      <Tab.Screen name="Allergkies" component={SearchTab} />
+      <Tab.Screen name="Allerg5ies" component={SearchTab} />
     </Tab.Navigator>
   );
 }
